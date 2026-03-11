@@ -1,0 +1,32 @@
+{
+  "name": "directus-frontend",
+  "version": "1.0.0",
+  "description": "Express + TypeScript frontend for Directus",
+  "type": "module",
+  "main": "dist/server/index.js",
+  "scripts": {
+    "dev": "tsx watch src/server/index.ts",
+    "apply-schema": "tsx scripts/apply-schema.ts",
+    "build:client": "esbuild src/client/main.ts --bundle --outfile=public/js/bundle.js --minify",
+    "build:server": "tsc -p tsconfig.json",
+    "build": "npm run build:client && npm run build:server",
+    "start": "node dist/server/index.js"
+  },
+  "dependencies": {
+    "@directus/sdk": "^21.2.0",
+    "@directus/visual-editing": "^2.0.0",
+    "dotenv": "^16.4.7",
+    "ejs": "^5.0.1",
+    "express": "^5.1.0",
+    "express-session": "^1.18.1"
+  },
+  "devDependencies": {
+    "@types/ejs": "^3.1.5",
+    "@types/express": "^5.0.1",
+    "@types/express-session": "^1.18.0",
+    "@types/node": "^22.13.10",
+    "esbuild": "^0.25.1",
+    "tsx": "^4.19.3",
+    "typescript": "^5.8.2"
+  }
+}

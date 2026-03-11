@@ -1,0 +1,17 @@
+<%- include('partials/header', { title: 'Dashboard' }) %>
+
+<div class="page-wrapper">
+  <header class="topbar">
+    <span class="topbar-brand">Directus App</span>
+    <form method="POST" action="/logout">
+      <button type="submit" class="btn btn-secondary">Sign Out</button>
+    </form>
+  </header>
+
+  <main class="content">
+    <h1>Dashboard</h1>
+    <p>You are signed in. This is where your content will appear.</p>
+  </main>
+</div>
+
+<%- include('partials/footer') %>

@@ -1,0 +1,34 @@
+<%- include('partials/header', { title: title }) %>
+
+<div class="page-wrapper">
+  <header class="topbar">
+    <span class="topbar-brand">Directus App</span>
+    <nav class="topbar-nav">
+      <a href="/dashboard" class="btn btn-secondary topbar-link">Dashboard</a>
+      <form method="POST" action="/logout" style="display:inline">
+        <button type="submit" class="btn btn-secondary">Sign Out</button>
+      </form>
+    </nav>
+  </header>
+
+  <main class="content">
+    <h1>Pages</h1>
+
+    <% if (pages.length === 0) { %>
+      <p class="empty-state">No published pages yet. Create and publish a page in Directus to see it here.</p>
+    <% } else { %>
+      <ul class="page-list">
+        <% pages.forEach(function(p) { %>
+          <li class="page-list-item">
+            <a href="/page/<%= p.slug %>" class="page-list-link">
+              <%= p.title %>
+            </a>
+            <span class="page-list-slug">/<%= p.slug %></span>
+          </li>
+        <% }); %>
+      </ul>
+    <% } %>
+  </main>
+</div>
+
+<%- include('partials/footer') %>

@@ -1,0 +1,12 @@
+{
+  "extends": "./tsconfig.json",
+  "compilerOptions": {
+    "module": "ES2022",
+    "moduleResolution": "Bundler",
+    "lib": ["ES2022", "DOM"],
+    "outDir": "public/js",
+    "noEmit": true
+  },
+  "include": ["src/client/**/*"],
+  "exclude": ["node_modules", "dist", "src/server"]
+}
