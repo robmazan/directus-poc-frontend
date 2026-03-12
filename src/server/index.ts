@@ -1,8 +1,10 @@
 import 'dotenv/config';
 import express from 'express';
 import session from 'express-session';
+import { pinoHttp } from 'pino-http';
 import { fileURLToPath } from 'node:url';
 import path from 'node:path';
+import logger from './logger.js';
 
 import authRouter from './routes/auth.js';
 import dashboardRouter from './routes/dashboard.js';
@@ -19,6 +21,9 @@ const PORT = process.env.PORT ?? 3000;
 // ── View engine ──────────────────────────────────────────────────────────────
 app.set('view engine', 'ejs');
 app.set('views', path.join(ROOT, 'views'));
+
+// ── HTTP request logging ─────────────────────────────────────────────────────
+app.use(pinoHttp({ logger }));
 
 // ── Static assets ────────────────────────────────────────────────────────────
 app.use(express.static(path.join(ROOT, 'public')));
@@ -46,5 +51,5 @@ app.use(authRouter);app.use(pagesRouter);app.use(dashboardRouter);
 
 // ── Start ────────────────────────────────────────────────────────────────────
 app.listen(PORT, () => {
-  console.log(`Server running at http://localhost:${PORT}`);
+  logger.info('Server running at http://localhost:%s', PORT);
 });

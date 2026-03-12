@@ -8,13 +8,17 @@ import {
 import type { Request } from 'express';
 import type { Page, PageWithRows } from '../types/content.js';
 
+import logger from '../logger.js';
+
 const DIRECTUS_URL = process.env.DIRECTUS_URL ?? 'http://localhost:8055';
+logger.info({ DIRECTUS_URL }, 'Directus service initialised');
 
 /**
  * Creates a fresh Directus client with no stored credentials.
  * Use this for login (unauthenticated requests).
  */
 export function createDirectus() {
+  logger.debug({ DIRECTUS_URL }, 'createDirectus()');
   return createDirectusClient(DIRECTUS_URL)
     .with(authentication('json'))
     .with(rest());
