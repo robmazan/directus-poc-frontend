@@ -18,6 +18,11 @@ const ROOT = path.resolve(__dirname, '../..');
 const app = express();
 const PORT = process.env.PORT ?? 3000;
 
+// Trust the first hop (Azure Container Apps / any SSL-terminating reverse proxy).
+// Without this, Express sees an HTTP connection and express-session refuses to
+// set the cookie when `secure: true`, so the session is never persisted.
+app.set('trust proxy', 1);
+
 // ── View engine ──────────────────────────────────────────────────────────────
 app.set('view engine', 'ejs');
 app.set('views', path.join(ROOT, 'views'));
