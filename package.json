@@ -8,8 +8,10 @@
     "dev": "tsx watch src/server/index.ts | pino-pretty --colorize --translateTime 'SYS:HH:MM:ss' --ignore 'pid,hostname'",
     "apply-schema": "tsx scripts/apply-schema.ts",
     "build:client": "esbuild src/client/main.ts --bundle --outfile=public/js/bundle.js --minify",
+    "build:client:dev": "esbuild src/client/main.ts --bundle --outfile=public/js/bundle.js --sourcemap",
     "build:server": "tsc -p tsconfig.json",
     "build": "npm run build:client && npm run build:server",
+    "build:dev": "npm run build:client:dev && npm run build:server",
     "start": "node dist/server/index.js"
   },
   "dependencies": {
